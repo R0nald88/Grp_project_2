@@ -71,19 +71,21 @@ public class Record {
 		}
 		level = level1;
 
-		correctInput = Arrays.asList(records[2].split(";"));
+		if (!records[2].equals("") && !records[2].equals(";"))
+			correctInput = Arrays.asList(records[2].split(";"));
 
-		String[] g = records[3].split(";");
 		guessRecord = new ArrayList<>();
-		for (String a : g)
-			guessRecord.add(new ArrayList<>(Arrays.asList(a.split(","))));
-
+		if (!records[3].equals("") && !records[3].equals(";")) {
+			String[] g = records[3].split(";");
+			for (String a : g)
+				guessRecord.add(new ArrayList<>(Arrays.asList(a.split(","))));
+		}
+		
 		try {
 			timeUsed = Integer.parseInt(records[5]);
 		} catch (NumberFormatException e) {
 			timeUsed = 0;
 		}
-
 	}
 
 	public static List<Record> read(Context context){
